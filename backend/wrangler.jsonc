@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "backend",
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "ai": { "binding": "AI" },
+  "observability": { "traces": { "enabled": true } },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["FlueHelloAgent"] }],
+}
