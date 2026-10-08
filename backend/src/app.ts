@@ -6,7 +6,6 @@ const app = new Hono();
 
 app.use("/agents/*", async (context, next) => {
   const token = context.req.header("Authorization");
-  console.log("token", token);
 
   if (!token || !token.includes("TEST_TOKEN")) {
     return context.json({ error: "Authentication failed" }, 401);
