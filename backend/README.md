@@ -52,6 +52,36 @@ The Hello agent is served at `http://localhost:5173/agents/hello` — see `src/a
 npm run deploy
 ```
 
+## Cloudflare Sandbox
+
+`CustomerSupport` uses `@cloudflare/sandbox` through Flue's
+`cloudflareSandbox(getSandbox(env.Sandbox, id))`. This requires the Cloudflare
+Worker runtime; use `npm run dev`, not the Node-local `flue run` command.
+
+The SDK and Docker image are both pinned to `0.11.0`. Update both together.
+The image copies `sandbox-files/` into `/workspace` to provide the existing
+sales-report example. Each agent instance ID selects its own sandbox.
+
+Local container development requires Docker to be running. Local variables
+can stay in `.env` (or use `.dev.vars` instead); the sandbox itself needs no
+additional secrets. Authenticate with `npx wrangler login`.
+
+```sh
+npm run dev
+```
+
+To deploy with secrets from the local environment file:
+
+```sh
+npm run build
+npx wrangler deploy --secrets-file .env
+```
+
+The Cloudflare account must have Containers access. Container files are not
+a durable backup; use external storage if results must survive container resets.
+
+See the [Flue Cloudflare deployment guide](https://flueframework.com/docs/ecosystem/deploy/cloudflare/#connecting-a-remote-sandbox).
+
 ## Learn more
 
 - [Flue docs](https://flueframework.com/docs/) — or `npx flue docs` from the terminal.
