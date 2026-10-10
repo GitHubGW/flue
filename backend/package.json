@@ -6,10 +6,11 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"deploy": "vite build && wrangler deploy",
-		"check:types": "tsc --noEmit"
+		"check:types": "tsc --noEmit",
+		"test:sandbox": "node --test tests/sandbox.test.mjs"
 	},
 	"dependencies": {
-		"@cloudflare/sandbox": "0.11.0",
+		"@cloudflare/sandbox": "1.0.0",
 		"@flue/runtime": "^2.2.2",
 		"hono": "^4.12.32",
 		"just-bash": "^3.6.0",

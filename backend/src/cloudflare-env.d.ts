@@ -1,4 +1,4 @@
-import type { Sandbox } from "@cloudflare/sandbox";
+import type { Sandbox } from "./sandbox";
 
 declare global {
   namespace Cloudflare {

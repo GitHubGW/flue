@@ -1,6 +1,5 @@
 "use agent";
 
-import { getSandbox } from "@cloudflare/sandbox";
 import { type AgentProps, useModel, useSandbox } from "@flue/runtime";
 import { cloudflareSandbox } from "@flue/runtime/cloudflare";
 import { env } from "cloudflare:workers";
@@ -11,7 +10,7 @@ export const CustomerSupport = ({ id }: AgentProps) => {
   useModel(glmModel);
 
   useSandbox(
-    cloudflareSandbox(getSandbox(env.Sandbox, id)),
+    cloudflareSandbox(env.Sandbox.getByName(id)),
     { cwd: "/workspace" },
   );
 
