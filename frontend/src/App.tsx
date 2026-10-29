@@ -2,7 +2,7 @@ import { useFlueAgent } from "@flue/react";
 import { createFlueClient } from "@flue/sdk";
 import { useMemo, useState } from "react";
 
-const url = "http://localhost:5173/agents/gw-4";
+const url = "https://backend.kowonp.workers.dev";
 
 const App = () => {
   const [message, setMessage] = useState("");
@@ -132,6 +132,8 @@ const App = () => {
                     return <span>Data Progress: {JSON.stringify(part.data, null, 2)}</span>;
                   }
                 })}
+
+                <div>Metadata: {JSON.stringify(message.metadata, null, 2)}</div>
               </div>
             </li>
           ))}
