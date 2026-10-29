@@ -5,19 +5,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "ai": { "binding": "AI" },
   "observability": { "traces": { "enabled": true } },
-  "durable_objects": {
-    "bindings": [{ "class_name": "Sandbox", "name": "Sandbox" }]
-  },
   "migrations": [
-    { "tag": "v1", "new_sqlite_classes": ["FlueCustomerSupportAgent"] },
-    { "tag": "v2", "new_sqlite_classes": ["Sandbox"] }
-  ],
-  "containers": [
-    {
-      "class_name": "Sandbox",
-      "name": "backend-sandbox-v1",
-      "scheduling_policy": "durable_object",
-      "images": { "workspace": { "dockerfile": "./Dockerfile" } }
-    }
+    { "tag": "v1", "new_sqlite_classes": ["FlueCustomerSupportAgent"] }
   ],
 }

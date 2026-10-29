@@ -1,16 +1,35 @@
 "use agent";
 
-import { type AgentProps, useModel, useSandbox } from "@flue/runtime";
-import { cloudflareSandbox } from "@flue/runtime/cloudflare";
-import { env } from "cloudflare:workers";
+import { bash, useModel, useSandbox } from "@flue/runtime";
+import { Bash, InMemoryFs } from "just-bash";
 
 const glmModel = "cloudflare/@cf/zai-org/glm-4.7-flash";
 
-export const CustomerSupport = ({ id }: AgentProps) => {
+const briefFile = `
+# Monthly sales report
+Analyze the sales data.
+Calculate total revenue and revenue by product.
+Write the results to report.md.
+`.trim();
+
+const salesFile = `
+product,revenue
+Keyboard,1200
+Monitor,2400
+Keyboard,800
+Mouse,600
+Monitor,1600`.trim();
+
+const files = {
+  "/workspace/brief.md": briefFile,
+  "/workspace/sales.csv": salesFile,
+};
+
+export const CustomerSupport = () => {
   useModel(glmModel);
 
   useSandbox(
-    cloudflareSandbox(env.Sandbox.getByName(id)),
+    bash(() => new Bash({ fs: new InMemoryFs(files) })),
     { cwd: "/workspace" },
   );
 
