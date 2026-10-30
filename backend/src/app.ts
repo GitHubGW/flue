@@ -8,7 +8,7 @@ const app = new Hono();
 app.use(
   "/agents/*",
   cors({
-    origin: "http://localhost:5174",
+    origin: ["http://localhost:5174", "https://frontend.kowonp.workers.dev"],
     allowMethods: ["GET", "HEAD", "POST", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
     exposeHeaders: ["Location", "Stream-Next-Offset", "Stream-Up-To-Date"],
